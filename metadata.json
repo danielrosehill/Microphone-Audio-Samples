@@ -1,0 +1,188 @@
+{
+  "reference_text_file": "text/coffee.txt",
+  "recording_environment": "Home office, quiet acoustic environment",
+  "default_gain": "100%",
+  "default_recording_software": "Audacity",
+  "samples": [
+    {
+      "id": 1,
+      "filename": "samples/1.wav",
+      "microphone": {
+        "manufacturer": "UGreen",
+        "model": "CM564",
+        "type": "USB Gooseneck",
+        "category": "desktop",
+        "subcategory": "gooseneck"
+      },
+      "connection": "USB-A",
+      "distance_cm": 30,
+      "gain_percent": 100,
+      "notes": "Speaking about 30cm from mic in home office"
+    },
+    {
+      "id": 2,
+      "filename": "samples/2.wav",
+      "microphone": {
+        "manufacturer": "Samson",
+        "model": "Q2U",
+        "type": "Dynamic USB/XLR",
+        "category": "desktop",
+        "subcategory": "dynamic"
+      },
+      "connection": "USB (mini)",
+      "distance_cm": 30,
+      "gain_percent": 100,
+      "notes": "Positioned on desk stand about 30cm from address"
+    },
+    {
+      "id": 3,
+      "filename": "samples/3.wav",
+      "microphone": {
+        "manufacturer": "Logitech",
+        "model": "H390",
+        "type": "USB Headset",
+        "category": "headset",
+        "subcategory": "wired"
+      },
+      "connection": "USB (wired)",
+      "distance_cm": null,
+      "gain_percent": 100,
+      "notes": "USB wired overhead mic headset"
+    },
+    {
+      "id": 4,
+      "filename": "samples/4.wav",
+      "microphone": {
+        "manufacturer": "OnePlus",
+        "model": "Nord 3 5G",
+        "type": "Smartphone built-in",
+        "category": "mobile",
+        "subcategory": "smartphone"
+      },
+      "connection": "N/A (phone)",
+      "distance_cm": null,
+      "gain_percent": null,
+      "notes": "ASR HQ voice profile recording on phone"
+    },
+    {
+      "id": 5,
+      "filename": "samples/5.mp3",
+      "microphone": {
+        "manufacturer": "OnePlus",
+        "model": "Nord 3 5G (assumed)",
+        "type": "Smartphone built-in",
+        "category": "mobile",
+        "subcategory": "smartphone"
+      },
+      "connection": "N/A (phone)",
+      "distance_cm": null,
+      "gain_percent": null,
+      "notes": "Voicenotes.com recording (on phone, uploaded then downloaded from cloud) - MP3 compression applied"
+    },
+    {
+      "id": 6,
+      "filename": "samples/6.wav",
+      "microphone": {
+        "manufacturer": "Audio-Technica",
+        "model": "ATR4697",
+        "type": "Boundary Microphone",
+        "category": "desktop",
+        "subcategory": "boundary"
+      },
+      "connection": "USB-A",
+      "distance_cm": 30,
+      "gain_percent": 100,
+      "notes": "About 30cm from speaking position (close on desk)"
+    },
+    {
+      "id": 7,
+      "filename": "samples/7.wav",
+      "microphone": {
+        "manufacturer": "Audio-Technica",
+        "model": "ATR4697",
+        "type": "Boundary Microphone",
+        "category": "desktop",
+        "subcategory": "boundary"
+      },
+      "connection": "USB-A",
+      "distance_cm": 80,
+      "gain_percent": 100,
+      "notes": "Long throw test - mic positioned on monitor stand approximately 80cm away"
+    },
+    {
+      "id": 8,
+      "filename": "samples/8.wav",
+      "microphone": {
+        "manufacturer": "Jabra",
+        "model": "Speak 510",
+        "type": "USB Speakerphone",
+        "category": "desktop",
+        "subcategory": "speakerphone"
+      },
+      "connection": "USB",
+      "distance_cm": null,
+      "gain_percent": 100,
+      "notes": "USB speakerphone"
+    },
+    {
+      "id": 9,
+      "filename": "samples/9.wav",
+      "microphone": {
+        "manufacturer": "Logitech",
+        "model": "C925e",
+        "type": "Webcam built-in",
+        "category": "desktop",
+        "subcategory": "webcam"
+      },
+      "connection": "USB",
+      "distance_cm": 30,
+      "gain_percent": 100,
+      "notes": "Webcam built-in microphone, about 30cm away"
+    },
+    {
+      "id": 10,
+      "filename": "samples/10.wav",
+      "microphone": {
+        "manufacturer": "Maono",
+        "model": "Elf",
+        "type": "Lavalier",
+        "category": "lavalier",
+        "subcategory": "wired"
+      },
+      "connection": "USB-A",
+      "distance_cm": null,
+      "gain_percent": 100,
+      "notes": "USB-A wired lavalier microphone"
+    },
+    {
+      "id": 11,
+      "filename": "samples/11.wav",
+      "microphone": {
+        "manufacturer": "Yealink",
+        "model": "BH72",
+        "type": "Wireless Headset",
+        "category": "headset",
+        "subcategory": "wireless"
+      },
+      "connection": "USB Dongle (BT51)",
+      "distance_cm": null,
+      "gain_percent": 100,
+      "notes": "Bluetooth headset via Yealink BT51 USB dongle"
+    },
+    {
+      "id": 12,
+      "filename": "samples/12.wav",
+      "microphone": {
+        "manufacturer": "Yealink",
+        "model": "BH72",
+        "type": "Wireless Headset",
+        "category": "headset",
+        "subcategory": "wireless"
+      },
+      "connection": "Bluetooth (TP-Link UB500)",
+      "distance_cm": null,
+      "gain_percent": 100,
+      "notes": "Bluetooth headset via TP-Link UB500 Bluetooth adapter"
+    }
+  ]
+}
