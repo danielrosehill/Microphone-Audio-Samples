@@ -198,6 +198,38 @@
       "distance_cm": null,
       "gain_percent": 100,
       "notes": "Gooseneck condenser microphone with omnidirectional pickup"
+    },
+    {
+      "id": 14,
+      "filename": "samples/14.wav",
+      "microphone": {
+        "manufacturer": "OnePlus",
+        "model": "Nord 3 5G",
+        "type": "Smartphone built-in",
+        "category": "mobile",
+        "subcategory": "smartphone"
+      },
+      "connection": "N/A (phone)",
+      "distance_cm": null,
+      "gain_percent": null,
+      "recording_environment": "Outdoors - Mahane Yehuda market (noisy)",
+      "notes": "Recorded outside in Mahane Yehuda market - high ambient noise environment"
+    },
+    {
+      "id": 15,
+      "filename": "samples/15.wav",
+      "microphone": {
+        "manufacturer": "OnePlus",
+        "model": "Nord 3 5G",
+        "type": "Smartphone built-in",
+        "category": "mobile",
+        "subcategory": "smartphone"
+      },
+      "connection": "N/A (phone)",
+      "distance_cm": null,
+      "gain_percent": null,
+      "recording_environment": "Home office (quiet)",
+      "notes": "Recorded in home office - quiet acoustic environment"
     }
   ]
 }

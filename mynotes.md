@@ -94,3 +94,14 @@ Audio-Technica ATR4750-USB (gooseneck microphone)
 
 USB-A
  
+ ## Sample 14
+
+ Outside in Mahane Yehuda market
+
+ One Plus Nord 3 5G Internal Mic
+
+ ## Sample 15
+
+ Home office
+
+ One Plus Nord 3 5G Internal mic
