@@ -35,7 +35,7 @@ METADATA_FILE = BASE_DIR / "metadata.json"
 REFERENCE_TEXT_FILE = BASE_DIR / "text" / "coffee.txt"
 RESULTS_FILE = BASE_DIR / "evaluation_results.json"
 
-LOCAL_WHISPER_URL = "http://localhost:9000/transcribe"
+# OpenAI-only evaluation for methodological consistency
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 
@@ -287,26 +287,6 @@ def calculate_audio_quality_score(metrics: AudioMetrics) -> float:
     return min(100, max(0, score))
 
 
-def transcribe_with_local_whisper(filepath: Path) -> str:
-    """Transcribe using local Whisper Docker container."""
-    import time
-
-    with open(filepath, "rb") as f:
-        files = {"file": (filepath.name, f, "audio/wav")}
-        data = {"language": "en", "punctuation": "true"}
-
-        start = time.time()
-        response = requests.post(LOCAL_WHISPER_URL, files=files, data=data, timeout=300)
-        elapsed = time.time() - start
-
-        if response.status_code == 200:
-            result = response.json()
-            return result.get("text", ""), elapsed
-        else:
-            print(f"  Local Whisper error: {response.status_code} - {response.text}")
-            return "", elapsed
-
-
 def transcribe_with_openai(filepath: Path) -> tuple[str, float]:
     """Transcribe using OpenAI Whisper API."""
     import time
@@ -358,27 +338,7 @@ def evaluate_sample(sample: dict, reference_text: str) -> SampleEvaluation:
 
     run_date = datetime.now().strftime("%Y-%m-%d")
 
-    # Local Whisper transcription (optional - may not be available)
-    try:
-        print("  Transcribing with local Whisper...")
-        local_text, local_time = transcribe_with_local_whisper(filepath)
-        if local_text:
-            normalized_local = normalize_text(local_text)
-            local_wer = wer(normalized_reference, normalized_local)
-            local_cer = cer(normalized_reference, normalized_local)
-            transcriptions.append(TranscriptionResult(
-                service="local_whisper_large_v3_turbo",
-                text=local_text,
-                wer=local_wer,
-                cer=local_cer,
-                processing_time_seconds=local_time,
-                run_date=run_date
-            ))
-            print(f"    WER: {local_wer:.2%}, CER: {local_cer:.2%}")
-    except Exception as e:
-        print(f"  Local Whisper unavailable: {e}")
-
-    # OpenAI Whisper transcription
+    # OpenAI Whisper transcription (single source for methodological consistency)
     if OPENAI_API_KEY:
         print("  Transcribing with OpenAI Whisper...")
         openai_text, openai_time = transcribe_with_openai(filepath)
@@ -414,19 +374,13 @@ def generate_report(evaluations: list[SampleEvaluation], reference_text: str) ->
     # Sort by audio quality score
     by_quality = sorted(evaluations, key=lambda e: e.audio_quality_score, reverse=True)
 
-    # Sort by local Whisper WER (lower is better)
-    by_local_wer = sorted(
-        [e for e in evaluations if any(t.service == "local_whisper_large_v3_turbo" for t in e.transcriptions)],
-        key=lambda e: next(t.wer for t in e.transcriptions if t.service == "local_whisper_large_v3_turbo")
-    )
-
-    # Sort by OpenAI WER
-    by_openai_wer = sorted(
+    # Sort by OpenAI WER (lower is better) - single source for methodological consistency
+    by_wer = sorted(
         [e for e in evaluations if any(t.service == "openai_whisper_1" for t in e.transcriptions)],
         key=lambda e: next(t.wer for t in e.transcriptions if t.service == "openai_whisper_1")
     )
 
-    # Category analysis
+    # Category analysis using OpenAI WER
     categories = {}
     for e in evaluations:
         cat = e.microphone.get("category", "unknown")
@@ -438,17 +392,29 @@ def generate_report(evaluations: list[SampleEvaluation], reference_text: str) ->
         cat_evals = [e for e in evaluations if e.microphone.get("category") == cat]
         data["avg_quality"] = sum(e.audio_quality_score for e in cat_evals) / len(cat_evals)
         wers = [
-            next((t.wer for t in e.transcriptions if t.service == "local_whisper_large_v3_turbo"), None)
+            next((t.wer for t in e.transcriptions if t.service == "openai_whisper_1"), None)
             for e in cat_evals
         ]
         wers = [w for w in wers if w is not None]
         data["avg_wer"] = sum(wers) / len(wers) if wers else None
 
+    # Get evaluation date from first transcription
+    eval_date = None
+    for e in evaluations:
+        for t in e.transcriptions:
+            if t.run_date:
+                eval_date = t.run_date
+                break
+        if eval_date:
+            break
+
     report = {
         "summary": {
             "total_samples": len(evaluations),
             "reference_text_words": len(reference_text.split()),
-            "openai_api_available": OPENAI_API_KEY is not None
+            "transcription_service": "OpenAI Whisper API (whisper-1)",
+            "evaluation_date": eval_date or datetime.now().strftime("%Y-%m-%d"),
+            "methodology": "Single transcription service for all samples to ensure methodological consistency"
         },
         "rankings": {
             "by_audio_quality": [
@@ -461,14 +427,15 @@ def generate_report(evaluations: list[SampleEvaluation], reference_text: str) ->
                 }
                 for i, e in enumerate(by_quality)
             ],
-            "by_local_whisper_wer": [
+            "by_wer": [
                 {
                     "rank": i + 1,
                     "sample_id": e.sample_id,
                     "microphone": f"{e.microphone['manufacturer']} {e.microphone['model']}",
-                    "wer_percent": round(next(t.wer for t in e.transcriptions if t.service == "local_whisper_large_v3_turbo") * 100, 2)
+                    "category": e.microphone.get("category"),
+                    "wer_percent": round(next(t.wer for t in e.transcriptions if t.service == "openai_whisper_1") * 100, 2)
                 }
-                for i, e in enumerate(by_local_wer)
+                for i, e in enumerate(by_wer)
             ]
         },
         "category_analysis": categories,
@@ -484,18 +451,6 @@ def generate_report(evaluations: list[SampleEvaluation], reference_text: str) ->
             for e in evaluations
         ]
     }
-
-    # Add OpenAI rankings if available
-    if by_openai_wer:
-        report["rankings"]["by_openai_whisper_wer"] = [
-            {
-                "rank": i + 1,
-                "sample_id": e.sample_id,
-                "microphone": f"{e.microphone['manufacturer']} {e.microphone['model']}",
-                "wer_percent": round(next(t.wer for t in e.transcriptions if t.service == "openai_whisper_1") * 100, 2)
-            }
-            for i, e in enumerate(by_openai_wer)
-        ]
 
     return report
 
@@ -581,22 +536,18 @@ def main():
     print("\n" + "=" * 60)
     print("RESULTS SUMMARY")
     print("=" * 60)
+    print(f"\nTranscription: {report['summary']['transcription_service']}")
+    print(f"Evaluation Date: {report['summary']['evaluation_date']}")
 
     print("\n📊 AUDIO QUALITY RANKING (by composite score):")
     print("-" * 50)
     for item in report["rankings"]["by_audio_quality"][:5]:
         print(f"  #{item['rank']}: {item['microphone']} ({item['category']}) - Score: {item['score']}")
 
-    print("\n🎯 STT ACCURACY RANKING (Local Whisper - by WER):")
+    print("\n🎯 STT ACCURACY RANKING (OpenAI Whisper - by WER):")
     print("-" * 50)
-    for item in report["rankings"]["by_local_whisper_wer"][:5]:
-        print(f"  #{item['rank']}: {item['microphone']} - WER: {item['wer_percent']:.2f}%")
-
-    if "by_openai_whisper_wer" in report["rankings"]:
-        print("\n🌐 STT ACCURACY RANKING (OpenAI Whisper - by WER):")
-        print("-" * 50)
-        for item in report["rankings"]["by_openai_whisper_wer"][:5]:
-            print(f"  #{item['rank']}: {item['microphone']} - WER: {item['wer_percent']:.2f}%")
+    for item in report["rankings"]["by_wer"][:5]:
+        print(f"  #{item['rank']}: {item['microphone']} ({item['category']}) - WER: {item['wer_percent']:.2f}%")
 
     print("\n📁 CATEGORY ANALYSIS:")
     print("-" * 50)

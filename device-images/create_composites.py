@@ -2,6 +2,8 @@
 """
 Create composite grid images of microphone device photos with overlay cards
 showing name, type, and WER (Word Error Rate).
+
+WER data is loaded dynamically from evaluation_results.json for consistency.
 """
 
 import os
@@ -19,114 +21,90 @@ FONT_SIZE_TITLE = 20
 FONT_SIZE_SUBTITLE = 14
 FONT_SIZE_WER = 16
 
-# Sample data: each entry represents a unique test sample
-# Using OpenAI Whisper WER from evaluation_results.json
-SAMPLES = [
-    {
-        "image": "cm564.png",
-        "sample_id": 1,
-        "name": "UGreen CM564",
-        "type": "Desktop Gooseneck",
-        "category": "desktop",
-        "wer": 5.71
-    },
-    {
-        "image": "q2u.png",
-        "sample_id": 2,
-        "name": "Samson Q2U",
-        "type": "Dynamic USB/XLR",
-        "category": "desktop",
-        "wer": 5.40
-    },
-    {
-        "image": "h390.png",
-        "sample_id": 3,
-        "name": "Logitech H390",
-        "type": "USB Headset",
-        "category": "headset",
-        "wer": 5.71
-    },
-    {
-        "image": "atr4697.png",
-        "sample_id": 6,
-        "name": "ATR4697 (Close)",
-        "type": "Boundary ~30cm",
-        "category": "desktop",
-        "wer": 5.40
-    },
-    {
-        "image": "atr4697.png",
-        "sample_id": 7,
-        "name": "ATR4697 (Far)",
-        "type": "Boundary ~80cm",
-        "category": "desktop",
-        "wer": 4.76
-    },
-    {
-        "image": "jabra510.png",
-        "sample_id": 8,
-        "name": "Jabra Speak 510",
-        "type": "USB Speakerphone",
-        "category": "desktop",
-        "wer": 5.40
-    },
-    {
-        "image": "c925.png",
-        "sample_id": 9,
-        "name": "Logitech C925e",
-        "type": "Webcam Built-in",
-        "category": "desktop",
-        "wer": 5.40
-    },
-    {
-        "image": "maono-elf.png",
-        "sample_id": 10,
-        "name": "Maono Elf AU-UL10",
-        "type": "USB Lavalier",
-        "category": "lavalier",
-        "wer": 5.40
-    },
-    {
-        "image": "yealinkbh72.png",
-        "sample_id": 11,
-        "name": "Yealink BH72 (Dongle)",
-        "type": "Via USB Dongle",
-        "category": "headset",
-        "wer": 6.03
-    },
-    {
-        "image": "yealinkbh72.png",
-        "sample_id": 12,
-        "name": "Yealink BH72 (BT)",
-        "type": "Via Bluetooth",
-        "category": "headset",
-        "wer": 6.03
-    },
-    {
-        "image": "atr4750.png",
-        "sample_id": 13,
-        "name": "Audio-Technica ATR4750",
-        "type": "Gooseneck Condenser",
-        "category": "desktop",
-        "wer": 6.35
-    },
-    {
-        "image": "oneplus.png",
-        "sample_id": 14,
-        "name": "OnePlus Nord 3 (Noisy)",
-        "type": "Ambient Noise",
-        "category": "mobile",
-        "wer": 6.35
-    },
-    {
-        "image": "oneplus.png",
-        "sample_id": 15,
-        "name": "OnePlus Nord 3 (Quiet)",
-        "type": "Quiet Environment",
-        "category": "mobile",
-        "wer": 4.13
-    },
-]
+# Paths
+BASE_DIR = Path(__file__).parent.parent
+RESULTS_FILE = BASE_DIR / "evaluation_results.json"
+
+# Image mapping for samples (sample_id -> image filename)
+SAMPLE_IMAGES = {
+    1: "cm564.png",
+    2: "q2u.png",
+    3: "h390.png",
+    4: "oneplus.png",
+    5: "oneplus.png",
+    6: "atr4697.png",
+    7: "atr4697.png",
+    8: "jabra510.png",
+    9: "c925.png",
+    10: "maono-elf.png",
+    11: "yealinkbh72.png",
+    12: "yealinkbh72.png",
+    13: "atr4750.png",
+    14: "oneplus.png",
+    15: "oneplus.png",
+}
+
+# Display name overrides for clarity (sample_id -> custom name)
+DISPLAY_NAMES = {
+    4: "OnePlus Nord 3 (HQ)",
+    5: "OnePlus Nord 3 (MP3)",
+    6: "ATR4697 (Close)",
+    7: "ATR4697 (Far)",
+    11: "Yealink BH72 (Dongle)",
+    12: "Yealink BH72 (BT)",
+    14: "OnePlus Nord 3 (Noisy)",
+    15: "OnePlus Nord 3 (Quiet)",
+}
+
+# Type overrides for display
+TYPE_OVERRIDES = {
+    4: "HQ Voice Recording",
+    5: "MP3 via Voicenotes",
+    6: "Boundary ~30cm",
+    7: "Boundary ~80cm",
+    11: "Via USB Dongle",
+    12: "Via Bluetooth",
+    14: "Ambient Noise",
+    15: "Quiet Environment",
+}
+
+
+def load_samples_from_results():
+    """Load sample data from evaluation_results.json."""
+    with open(RESULTS_FILE, "r") as f:
+        results = json.load(f)
+
+    samples = []
+    for result in results["detailed_results"]:
+        sample_id = result["sample_id"]
+        mic = result["microphone"]
+
+        # Get WER from transcriptions
+        wer_percent = None
+        for t in result["transcriptions"]:
+            if t["service"] == "openai_whisper_1":
+                wer_percent = round(t["wer"] * 100, 2)
+                break
+
+        if wer_percent is None:
+            continue  # Skip samples without WER data
+
+        # Build display name
+        name = DISPLAY_NAMES.get(sample_id, f"{mic['manufacturer']} {mic['model']}")
+
+        # Build type
+        mic_type = TYPE_OVERRIDES.get(sample_id, mic.get("type", "Unknown"))
+
+        samples.append({
+            "image": SAMPLE_IMAGES.get(sample_id, "placeholder.png"),
+            "sample_id": sample_id,
+            "name": name,
+            "type": mic_type,
+            "category": mic.get("category", "desktop"),
+            "wer": wer_percent
+        })
+
+    return samples, results.get("summary", {})
 
 # Category colors
 CATEGORY_COLORS = {
@@ -244,8 +222,10 @@ def create_cell(image_path, mic_data, cell_width, cell_height):
     return cell
 
 
-def create_composite(samples, output_path, title=None):
+def create_composite(samples, output_path, title=None, summary=None):
     """Create a composite image with all samples in specified order."""
+    if summary is None:
+        summary = {}
     num_samples = len(samples)
     rows = (num_samples + IMAGES_PER_ROW - 1) // IMAGES_PER_ROW
 
@@ -304,8 +284,13 @@ def create_composite(samples, output_path, title=None):
     font_footer = get_font(13)
     font_footer_bold = get_font(13, bold=True)
 
-    footer_text_1 = "Results based on a single evaluation using OpenAI Whisper via Cloud API"
-    footer_text_2 = "Experiment: Daniel Rosehill | Date: December 2024 | 13 samples across 10 microphones"
+    # Get footer text from summary or use defaults
+    eval_date = summary.get("evaluation_date", "December 2025")
+    num_samples = summary.get("total_samples", len(samples))
+    methodology = summary.get("methodology", "Single evaluation using OpenAI Whisper API")
+
+    footer_text_1 = f"Methodology: {methodology}"
+    footer_text_2 = f"Experiment: Daniel Rosehill | Date: {eval_date} | {num_samples} samples"
 
     bbox1 = draw.textbbox((0, 0), footer_text_1, font=font_footer)
     bbox2 = draw.textbbox((0, 0), footer_text_2, font=font_footer)
@@ -330,32 +315,41 @@ def create_composite(samples, output_path, title=None):
 
 
 def main():
-    # Create composites directory
-    composites_dir = Path(__file__).parent / "composites"
-    composites_dir.mkdir(exist_ok=True)
+    # Load samples dynamically from evaluation results
+    print("Loading samples from evaluation_results.json...")
+    samples, summary = load_samples_from_results()
+    print(f"Loaded {len(samples)} samples")
+
+    # Create composites directory with date subfolder
+    eval_date = summary.get("evaluation_date", "unknown")
+    composites_dir = Path(__file__).parent / "composites" / f"eval-{eval_date.replace('-', '')}"
+    composites_dir.mkdir(parents=True, exist_ok=True)
 
     # 1. Create alphabetical grid composite
-    alphabetical = sorted(SAMPLES, key=lambda x: x["name"].lower())
+    alphabetical = sorted(samples, key=lambda x: x["name"].lower())
     create_composite(
         alphabetical,
         composites_dir / "microphones-grid.png",
-        title="Microphone STT Benchmark"
+        title="Microphone STT Benchmark",
+        summary=summary
     )
 
     # 2. Create WER-ranked composite (best to worst)
-    ranked_best_to_worst = sorted(SAMPLES, key=lambda x: x["wer"])
+    ranked_best_to_worst = sorted(samples, key=lambda x: x["wer"])
     create_composite(
         ranked_best_to_worst,
         composites_dir / "microphones-ranked-by-wer.png",
-        title="Microphones Ranked by WER (Best to Worst)"
+        title="Microphones Ranked by WER (Best to Worst)",
+        summary=summary
     )
 
     # 3. Create category-grouped composite
-    by_category = sorted(SAMPLES, key=lambda x: (x["category"], x["wer"]))
+    by_category = sorted(samples, key=lambda x: (x["category"], x["wer"]))
     create_composite(
         by_category,
         composites_dir / "microphones-by-category.png",
-        title="Microphones Grouped by Category"
+        title="Microphones Grouped by Category",
+        summary=summary
     )
 
     print(f"\nAll composites saved to: {composites_dir}")

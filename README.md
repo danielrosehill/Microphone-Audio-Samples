@@ -18,7 +18,6 @@ This repository evaluates which microphones produce the best results for speech-
 | 1 | UGreen CM564 | USB Gooseneck | Desktop | USB-A | 30cm distance |
 | 2 | Samson Q2U | Dynamic USB/XLR | Desktop | USB mini | 30cm distance |
 | 3 | Logitech H390 | USB Headset | Headset | USB wired | Overhead mic |
-| 4 | OnePlus Nord 3 5G | Smartphone built-in | Mobile | N/A | ASR HQ profile |
 | 5 | OnePlus Nord 3 5G | Smartphone built-in | Mobile | N/A | Voicenotes.com (MP3) |
 | 6 | Audio-Technica ATR4697 | Boundary Mic | Desktop | USB-A | 30cm distance |
 | 7 | Audio-Technica ATR4697 | Boundary Mic | Desktop | USB-A | 80cm (long throw) |
@@ -27,6 +26,9 @@ This repository evaluates which microphones produce the best results for speech-
 | 10 | Maono Elf | Lavalier | Lavalier | USB-A | Wired lav |
 | 11 | Yealink BH72 | Wireless Headset | Headset | USB Dongle | BT51 dongle |
 | 12 | Yealink BH72 | Wireless Headset | Headset | Bluetooth | TP-Link UB500 |
+| 13 | Audio-Technica ATR4750-USB | Condenser Gooseneck | Desktop | USB-A | 30cm distance |
+| 14 | OnePlus Nord 3 5G | Smartphone built-in | Mobile | N/A | ASR App (noisy - Mahane Yehuda) |
+| 15 | OnePlus Nord 3 5G | Smartphone built-in | Mobile | N/A | ASR App (quiet - home office) |
 
 ## STT Evaluation Results
 
@@ -34,20 +36,22 @@ This repository evaluates which microphones produce the best results for speech-
 
 Tested with local Whisper large-v3-turbo and OpenAI Whisper API.
 
-| Rank | Microphone | Category | Local Whisper WER | OpenAI Whisper WER |
-|------|------------|----------|-------------------|-------------------|
-| 1 | Maono Elf (lavalier) | Lavalier | **2.22%** | 5.40% |
-| 2 | Jabra Speak 510 | Desktop | 3.17% | 5.40% |
-| 3 | Logitech C925e (webcam) | Desktop | 3.49% | 5.40% |
-| 4 | UGreen CM564 | Desktop | 3.81% | 5.71% |
-| 5 | Audio-Technica ATR4697 (80cm) | Desktop | 4.13% | **4.76%** |
-| 6 | Yealink BH72 (dongle) | Headset | 4.13% | 6.03% |
-| 7 | OnePlus Nord 3 5G | Mobile | 5.08% | 5.71% |
-| 8 | OnePlus Nord 3 5G (MP3) | Mobile | 6.03% | 5.40% |
-| 9 | Audio-Technica ATR4697 (30cm) | Desktop | 6.35% | 5.40% |
-| 10 | Logitech H390 | Headset | 6.98% | 5.71% |
-| 11 | Samson Q2U | Desktop | 11.75% | 5.40% |
-| 12 | Yealink BH72 (BT adapter) | Headset | 11.75% | 6.03% |
+| Rank | ID | Microphone | Category | Local Whisper WER | OpenAI Whisper WER |
+|------|-----|------------|----------|-------------------|-------------------|
+| 1 | 10 | Maono Elf (lavalier) | Lavalier | **2.22%** | 5.40% |
+| 2 | 8 | Jabra Speak 510 | Desktop | 3.17% | 5.40% |
+| 3 | 9 | Logitech C925e (webcam) | Desktop | 3.49% | 5.40% |
+| 4 | 1 | UGreen CM564 | Desktop | 3.81% | 5.71% |
+| 5 | 7 | Audio-Technica ATR4697 (80cm) | Desktop | 4.13% | 4.76% |
+| 6 | 11 | Yealink BH72 (dongle) | Headset | 4.13% | 6.03% |
+| 7 | 15 | OnePlus Nord 3 5G (quiet) | Mobile | — | **4.13%** |
+| 8 | 5 | OnePlus Nord 3 5G (MP3) | Mobile | 6.03% | 5.40% |
+| 9 | 6 | Audio-Technica ATR4697 (30cm) | Desktop | 6.35% | 5.40% |
+| 10 | 14 | OnePlus Nord 3 5G (noisy) | Mobile | — | 6.35% |
+| 11 | 3 | Logitech H390 | Headset | 6.98% | 5.71% |
+| 12 | 13 | Audio-Technica ATR4750-USB | Desktop | — | 6.35% |
+| 13 | 2 | Samson Q2U | Desktop | 11.75% | 5.40% |
+| 14 | 12 | Yealink BH72 (BT adapter) | Headset | 11.75% | 6.03% |
 
 ### Audio Quality Scores - Higher is Better
 
