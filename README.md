@@ -9,6 +9,14 @@
 
 ---
 
+## Releases
+
+| Date | Release | Description |
+|------|---------|-------------|
+| 2025-12-23 | [v2025.12.23](https://github.com/danielrosehill/One-Shot-Transcription-Microphone-Eval/releases/tag/v2025.12.23) | Initial benchmark: 15 samples, 10 microphones |
+
+---
+
 ## Key Takeaway
 
 **Microphone quality matters less than environment for STT accuracy.** In this benchmark of 15 recordings across 10 microphones, most devices clustered within a narrow 4-6% Word Error Rate (WER) range. The biggest differentiator wasn't price or specifications—a $30 USB gooseneck mic matched or beat $150+ headsets. The same smartphone showed 50% higher error rates in a noisy market compared to a quiet room. For speech-to-text work, *any* decent microphone in a quiet space outperforms expensive gear in poor acoustic conditions.
