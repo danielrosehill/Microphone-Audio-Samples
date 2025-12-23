@@ -87,3 +87,10 @@
  Connected via Bluetooth dongle
 
  TP Link UB500
+
+ ## Sample 13
+
+Audio-Technica ATR4750-USB (gooseneck microphone)
+
+USB-A
+ 

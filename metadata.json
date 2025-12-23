@@ -183,6 +183,21 @@
       "distance_cm": null,
       "gain_percent": 100,
       "notes": "Bluetooth headset via TP-Link UB500 Bluetooth adapter"
+    },
+    {
+      "id": 13,
+      "filename": "samples/13.wav",
+      "microphone": {
+        "manufacturer": "Audio-Technica",
+        "model": "ATR4750-USB",
+        "type": "Condenser Gooseneck",
+        "category": "desktop",
+        "subcategory": "gooseneck"
+      },
+      "connection": "USB-A",
+      "distance_cm": null,
+      "gain_percent": 100,
+      "notes": "Gooseneck condenser microphone with omnidirectional pickup"
     }
   ]
 }
