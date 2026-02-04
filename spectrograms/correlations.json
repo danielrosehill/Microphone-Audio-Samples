@@ -1,62 +1,38 @@
 {
   "spectral_centroid_mean": {
-    "correlation": -0.24158348264290397,
-    "p_value": 0.3857058512256358
+    "r": -0.1389328755936186,
+    "p": 0.5948693401635219
   },
   "spectral_rolloff_mean": {
-    "correlation": -0.31347151686503566,
-    "p_value": 0.25523886009643737
+    "r": -0.2031790178165333,
+    "p": 0.43413814521880845
   },
   "spectral_bandwidth_mean": {
-    "correlation": -0.516216844611177,
-    "p_value": 0.04884063871746705
-  },
-  "zero_crossing_rate_mean": {
-    "correlation": 0.16565196116705877,
-    "p_value": 0.5551846096100161
-  },
-  "rms_mean": {
-    "correlation": 0.24409756601357013,
-    "p_value": 0.38062703600418163
-  },
-  "harmonic_ratio": {
-    "correlation": -0.44333490830631106,
-    "p_value": 0.09788883850396032
-  },
-  "speech_fundamental_ratio": {
-    "correlation": -0.2586439149084724,
-    "p_value": 0.35195920766423844
-  },
-  "speech_formant_ratio": {
-    "correlation": 0.32529489073454687,
-    "p_value": 0.2367753151616357
-  },
-  "high_freq_ratio": {
-    "correlation": 0.059149489801398156,
-    "p_value": 0.834141521891155
-  },
-  "speech_clarity_ratio": {
-    "correlation": 0.3928870868736293,
-    "p_value": 0.14743304821533668
+    "r": -0.39261961407427615,
+    "p": 0.11902541934407988
   },
   "spectral_flatness_mean": {
-    "correlation": 0.11586147554748938,
-    "p_value": 0.6809332246987375
+    "r": -0.05460142832218077,
+    "p": 0.8351244721101119
   },
-  "spectral_contrast_mean": {
-    "correlation": 0.13322086945884443,
-    "p_value": 0.6359851236845167
+  "zero_crossing_rate_mean": {
+    "r": 0.21000483919652765,
+    "p": 0.4185148527148878
   },
-  "mfcc_0_mean": {
-    "correlation": -0.05224526297072593,
-    "p_value": 0.8532952100172251
+  "rms_mean": {
+    "r": 0.269327920911683,
+    "p": 0.29585697842697856
   },
-  "mfcc_1_mean": {
-    "correlation": 0.01101927362847839,
-    "p_value": 0.9689097371743318
+  "harmonic_ratio": {
+    "r": -0.30988422332807064,
+    "p": 0.22610926387400337
   },
-  "mfcc_2_mean": {
-    "correlation": -0.33559762568249785,
-    "p_value": 0.22138213498557177
+  "speech_clarity_ratio": {
+    "r": 0.33674213799959274,
+    "p": 0.1862796440778204
+  },
+  "speech_formant_ratio": {
+    "r": 0.03770409839884756,
+    "p": 0.8857635397548393
   }
 }

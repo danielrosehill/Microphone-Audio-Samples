@@ -1,14 +1,15 @@
 {
-  "pearson_r": 0.540273288076398,
-  "pearson_p": 0.08620537456158463,
-  "spearman_rho": 0.5377287261556831,
-  "spearman_p": 0.08798743473756737,
-  "regression_slope": 0.00589138838543579,
-  "regression_intercept": 5.058689938891794,
+  "pearson_r": 0.5778827446623017,
+  "pearson_p": 0.03859239114246763,
+  "spearman_rho": 0.5871830041843769,
+  "spearman_p": 0.03486660826120404,
+  "regression_slope": 0.006536482685765926,
+  "regression_intercept": 5.025387160211677,
   "samples": [
     {
       "sample_id": 1,
       "name": "UGreen CM564",
+      "type": "USB Gooseneck",
       "price": 18,
       "wer": 4.444444444444445,
       "category": "desktop"
@@ -16,6 +17,7 @@
     {
       "sample_id": 2,
       "name": "Samson Q2U",
+      "type": "Dynamic USB/XLR",
       "price": 70,
       "wer": 5.396825396825397,
       "category": "desktop"
@@ -23,6 +25,7 @@
     {
       "sample_id": 3,
       "name": "Logitech H390",
+      "type": "USB Headset",
       "price": 30,
       "wer": 5.714285714285714,
       "category": "headset"
@@ -30,6 +33,7 @@
     {
       "sample_id": 6,
       "name": "Audio-Technica ATR4697",
+      "type": "Boundary Microphone",
       "price": 45,
       "wer": 5.396825396825397,
       "category": "desktop"
@@ -37,6 +41,7 @@
     {
       "sample_id": 7,
       "name": "Audio-Technica ATR4697",
+      "type": "Boundary Microphone",
       "price": 45,
       "wer": 4.761904761904762,
       "category": "desktop"
@@ -44,6 +49,7 @@
     {
       "sample_id": 8,
       "name": "Jabra Speak 510",
+      "type": "USB Speakerphone",
       "price": 110,
       "wer": 5.396825396825397,
       "category": "desktop"
@@ -51,6 +57,7 @@
     {
       "sample_id": 9,
       "name": "Logitech C925e",
+      "type": "Webcam built-in",
       "price": 75,
       "wer": 5.396825396825397,
       "category": "desktop"
@@ -58,6 +65,7 @@
     {
       "sample_id": 10,
       "name": "Maono Elf",
+      "type": "Lavalier",
       "price": 25,
       "wer": 5.396825396825397,
       "category": "lavalier"
@@ -65,6 +73,7 @@
     {
       "sample_id": 11,
       "name": "Yealink BH72",
+      "type": "Wireless Headset",
       "price": 160,
       "wer": 6.031746031746032,
       "category": "headset"
@@ -72,6 +81,7 @@
     {
       "sample_id": 12,
       "name": "Yealink BH72",
+      "type": "Wireless Headset",
       "price": 160,
       "wer": 6.031746031746032,
       "category": "headset"
@@ -79,9 +89,26 @@
     {
       "sample_id": 13,
       "name": "Audio-Technica ATR4750-USB",
+      "type": "Condenser Gooseneck",
       "price": 55,
       "wer": 6.349206349206349,
       "category": "desktop"
+    },
+    {
+      "sample_id": 16,
+      "name": "EMEET Conference Speakerphone",
+      "type": "USB Speakerphone",
+      "price": 40,
+      "wer": 5.079365079365079,
+      "category": "desktop"
+    },
+    {
+      "sample_id": 17,
+      "name": "Sony ICD-UX570",
+      "type": "Digital Voice Recorder",
+      "price": 100,
+      "wer": 6.031746031746032,
+      "category": "portable"
     }
   ]
 }

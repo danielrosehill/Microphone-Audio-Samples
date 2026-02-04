@@ -1,18 +1,26 @@
 # Microphone Audio Samples for STT Evaluation
 
-[![View PDF Report](https://img.shields.io/badge/📄_PDF_Report-View_Benchmark-blue?style=for-the-badge)](device-images/composites/eval-20251223/microphone-stt-benchmark.pdf)
+[![View PDF Report](https://img.shields.io/badge/📄_PDF_Report-View_Benchmark-blue?style=for-the-badge)](reports/microphone-stt-benchmark.pdf)
 [![View Infographic](https://img.shields.io/badge/📊_Infographic-WER_Rankings-green?style=for-the-badge)](device-images/composites/eval-20251223/infographic-wer-ranked.png)
-[![View by Category](https://img.shields.io/badge/📈_Chart-By_Category-orange?style=for-the-badge)](device-images/composites/eval-20251223/microphones-by-category.png)
+[![Type Comparison](https://img.shields.io/badge/📈_Chart-Type_Comparison-orange?style=for-the-badge)](spectrograms/type_comparison_analysis.png)
 [![Spectrograms](https://img.shields.io/badge/🔊_Spectrograms-Audio_Analysis-purple?style=for-the-badge)](spectrograms/spectrograms_ranked_by_wer.png)
 [![Spectrogram PDF](https://img.shields.io/badge/📑_All_Spectrograms-PDF_Collection-darkviolet?style=for-the-badge)](spectrograms/spectrograms_collection.pdf)
 [![Price Analysis](https://img.shields.io/badge/💰_Price-Correlation-red?style=for-the-badge)](spectrograms/price_vs_wer_analysis.png)
 
 ---
 
+## Reports
+
+| Report | Format | Description |
+|--------|--------|-------------|
+| [Benchmark Report](reports/microphone-stt-benchmark.pdf) | PDF | Complete analysis with rankings, correlations, and recommendations |
+| [Benchmark Report (source)](reports/microphone-stt-benchmark.typ) | Typst | Editable source file |
+
 ## Releases
 
 | Date | Release | Description |
 |------|---------|-------------|
+| 2025-02-04 | Current | 17 samples, 12 microphones (added EMEET, Sony DVR) |
 | 2025-12-23 | [v2025.12.23](https://github.com/danielrosehill/One-Shot-Transcription-Microphone-Eval/releases/tag/v2025.12.23) | Initial benchmark: 15 samples, 10 microphones |
 
 ---
@@ -69,6 +77,8 @@ All transcriptions performed using OpenAI Whisper API (whisper-1) in a single ev
 | 13 | Audio-Technica ATR4750-USB | Condenser Gooseneck | Desktop | ~$55 | Omnidirectional |
 | 14 | OnePlus Nord 3 5G | Smartphone built-in | Mobile | — | Noisy (Mahane Yehuda) |
 | 15 | OnePlus Nord 3 5G | Smartphone built-in | Mobile | — | Quiet (home office) |
+| 16 | EMEET Conference | USB Speakerphone | Desktop | ~$40 | Conference speakerphone |
+| 17 | Sony ICD-UX570 | Digital Voice Recorder | Portable | ~$100 | Standalone DVR (MP3) |
 
 ## STT Evaluation Results
 
@@ -79,18 +89,20 @@ All transcriptions performed using OpenAI Whisper API (whisper-1) in a single ev
 | 1 | 15 | OnePlus Nord 3 5G (quiet) | Mobile | **4.13%** |
 | 2 | 1 | UGreen CM564 | Desktop | 4.44% |
 | 3 | 7 | Audio-Technica ATR4697 (80cm) | Desktop | 4.76% |
-| 4 | 2 | Samson Q2U | Desktop | 5.40% |
-| 4 | 5 | OnePlus Nord 3 5G (MP3) | Mobile | 5.40% |
-| 4 | 6 | Audio-Technica ATR4697 (30cm) | Desktop | 5.40% |
-| 4 | 8 | Jabra Speak 510 | Desktop | 5.40% |
-| 4 | 9 | Logitech C925e | Desktop | 5.40% |
-| 4 | 10 | Maono Elf | Lavalier | 5.40% |
-| 10 | 3 | Logitech H390 | Headset | 5.71% |
-| 10 | 4 | OnePlus Nord 3 5G (HQ) | Mobile | 5.71% |
-| 12 | 11 | Yealink BH72 (dongle) | Headset | 6.03% |
-| 12 | 12 | Yealink BH72 (BT) | Headset | 6.03% |
-| 12 | 14 | OnePlus Nord 3 5G (noisy) | Mobile | 6.03% |
-| 15 | 13 | Audio-Technica ATR4750-USB | Desktop | 6.35% |
+| **4** | **16** | **EMEET Conference** | **Desktop** | **5.08%** |
+| 5 | 2 | Samson Q2U | Desktop | 5.40% |
+| 5 | 5 | OnePlus Nord 3 5G (MP3) | Mobile | 5.40% |
+| 5 | 6 | Audio-Technica ATR4697 (30cm) | Desktop | 5.40% |
+| 5 | 8 | Jabra Speak 510 | Desktop | 5.40% |
+| 5 | 9 | Logitech C925e | Desktop | 5.40% |
+| 5 | 10 | Maono Elf | Lavalier | 5.40% |
+| 11 | 3 | Logitech H390 | Headset | 5.71% |
+| 11 | 4 | OnePlus Nord 3 5G (HQ) | Mobile | 5.71% |
+| 13 | 11 | Yealink BH72 (dongle) | Headset | 6.03% |
+| 13 | 12 | Yealink BH72 (BT) | Headset | 6.03% |
+| 13 | 14 | OnePlus Nord 3 5G (noisy) | Mobile | 6.03% |
+| **13** | **17** | **Sony ICD-UX570** | **Portable** | **6.03%** |
+| 17 | 13 | Audio-Technica ATR4750-USB | Desktop | 6.35% |
 
 ### Audio Quality Scores - Higher is Better
 
@@ -110,10 +122,11 @@ Quality score (0-100) based on technical audio metrics including SNR, dynamic ra
 
 | Category | Avg Quality Score | Avg WER | Best Performer |
 |----------|-------------------|---------|----------------|
-| Desktop | 71.7 | 5.31% | UGreen CM564 (4.44%) |
+| Desktop | 72.1 | 5.28% | UGreen CM564 (4.44%) |
 | Mobile | 84.0 | 5.32% | OnePlus Nord 3 quiet (4.13%) |
 | Lavalier | 75.0 | 5.40% | Maono Elf |
 | Headset | 81.3 | 5.93% | Logitech H390 (5.71%) |
+| Portable | 78.0 | 6.03% | Sony ICD-UX570 |
 
 ## Key Findings
 
@@ -133,19 +146,26 @@ Quality score (0-100) based on technical audio metrics including SNR, dynamic ra
 
 ![Price vs WER Correlation](spectrograms/price_vs_wer_analysis.png)
 
-**Counter-intuitive finding: More expensive microphones showed slightly *worse* STT accuracy.**
+**Counter-intuitive finding: More expensive microphones showed *worse* STT accuracy.**
 
 | Price Tier | Samples | Avg WER | Best Performer |
 |------------|---------|---------|----------------|
 | Budget ($0-30) | 3 | 5.19% | UGreen CM564 (4.44%) |
-| Mid-range ($31-80) | 5 | 5.46% | Audio-Technica ATR4697 (4.76%) |
-| Premium ($80+) | 3 | 5.82% | Jabra Speak 510 (5.40%) |
+| Mid-range ($31-80) | 6 | 5.33% | EMEET Conference (5.08%) |
+| Premium ($80+) | 4 | 5.87% | Jabra Speak 510 (5.40%) |
 
-**Correlation Statistics** (phone samples excluded, n=11):
-- Pearson r = **0.540** (weak positive correlation—higher price, higher error rate)
-- p-value = 0.086 (not statistically significant at α=0.05)
+**Correlation Statistics** (phone samples excluded, n=13):
+- Pearson r = **0.578** (moderate positive correlation—higher price, higher error rate)
+- p-value = **0.039** (statistically significant at α=0.05)
 
-This suggests that for STT applications, expensive microphones don't provide meaningful accuracy benefits over budget options in quiet environments. The $18 UGreen gooseneck outperformed the $160 Yealink headset.
+This is now a *statistically significant* finding: **more expensive microphones tend to have worse STT accuracy**. The $18 UGreen gooseneck outperforms the $160 Yealink headset. The $40 EMEET conference speakerphone beats the $110 Jabra Speak 510.
+
+### Conference Speakerphone Head-to-Head
+
+| Model | Price | WER | Value |
+|-------|-------|-----|-------|
+| EMEET Conference | $40 | 5.08% | **Best value** |
+| Jabra Speak 510 | $110 | 5.40% | 2.75× more expensive, worse accuracy |
 
 ## Spectral Analysis
 
@@ -176,8 +196,12 @@ Individual spectrograms for each microphone are available in the [spectrograms/]
 ├── metadata.json               # Recording metadata for each sample
 ├── evaluation_results.json     # Full evaluation data
 ├── evaluate.py                 # Evaluation script
-├── generate_spectrograms.py    # Spectrogram & audio feature analysis
-├── price_analysis.py           # Price vs WER correlation analysis
+├── update_analysis.py          # Spectrogram & audio feature analysis
+├── update_price_analysis.py    # Price vs WER correlation analysis
+├── generate_type_comparison.py # Microphone type comparison charts
+├── reports/                    # Generated reports
+│   ├── microphone-stt-benchmark.pdf   # Main benchmark report
+│   └── microphone-stt-benchmark.typ   # Typst source
 ├── device-images/
 │   ├── originals/              # Microphone product photos
 │   └── composites/             # Generated graphics
@@ -185,6 +209,7 @@ Individual spectrograms for each microphone are available in the [spectrograms/]
 │   ├── spectrogram_*.png       # Individual spectrograms per sample
 │   ├── spectrograms_collection.pdf  # All spectrograms in PDF (landscape)
 │   ├── spectrograms_ranked_by_wer.png
+│   ├── type_comparison_analysis.png
 │   ├── correlation_analysis.png
 │   ├── price_vs_wer_analysis.png
 │   ├── analysis_report.md      # Detailed analysis findings
@@ -194,9 +219,11 @@ Individual spectrograms for each microphone are available in the [spectrograms/]
 
 ## Downloads
 
-- [PDF Report](device-images/composites/eval-20251223/microphone-stt-benchmark.pdf) - Complete visual benchmark report
-- [Spectrograms PDF Collection](spectrograms/spectrograms_collection.pdf) - All 18 spectrograms in landscape format (one per page)
-- [Spectrograms Grid](spectrograms/spectrograms_ranked_by_wer.png) - All 15 spectrograms ranked by WER
+- [Benchmark Report (PDF)](reports/microphone-stt-benchmark.pdf) - Complete benchmark report with rankings and analysis
+- [Benchmark Report (Typst)](reports/microphone-stt-benchmark.typ) - Editable source file
+- [Spectrograms PDF Collection](spectrograms/spectrograms_collection.pdf) - All spectrograms in landscape format
+- [Spectrograms Grid](spectrograms/spectrograms_ranked_by_wer.png) - All 17 spectrograms ranked by WER
+- [Type Comparison](spectrograms/type_comparison_analysis.png) - Microphone type head-to-head analysis
 - [Price Correlation Chart](spectrograms/price_vs_wer_analysis.png) - Price vs accuracy analysis
 - [Audio Feature Correlations](spectrograms/correlation_analysis.png) - Feature correlation scatter plots
 - [Analysis Report](spectrograms/analysis_report.md) - Detailed audio feature analysis findings

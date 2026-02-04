@@ -230,6 +230,36 @@
       "gain_percent": null,
       "recording_environment": "Home office (quiet)",
       "notes": "Recorded in home office - quiet acoustic environment"
+    },
+    {
+      "id": 16,
+      "filename": "samples/16.wav",
+      "microphone": {
+        "manufacturer": "EMEET",
+        "model": "Conference Speakerphone",
+        "type": "USB Speakerphone",
+        "category": "desktop",
+        "subcategory": "speakerphone"
+      },
+      "connection": "USB",
+      "distance_cm": null,
+      "gain_percent": 100,
+      "notes": "USB conference speakerphone"
+    },
+    {
+      "id": 17,
+      "filename": "samples/17.mp3",
+      "microphone": {
+        "manufacturer": "Sony",
+        "model": "ICD-UX570",
+        "type": "Digital Voice Recorder",
+        "category": "portable",
+        "subcategory": "dvr"
+      },
+      "connection": "N/A (standalone)",
+      "distance_cm": null,
+      "gain_percent": null,
+      "notes": "Sony digital voice recorder - MP3 recording"
     }
   ]
 }

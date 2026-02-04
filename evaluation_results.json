@@ -1,6 +1,6 @@
 {
   "summary": {
-    "total_samples": 15,
+    "total_samples": 17,
     "reference_text_words": 315,
     "transcription_service": "OpenAI Whisper API (whisper-1)",
     "evaluation_date": "2025-12-23",
@@ -66,48 +66,62 @@
       },
       {
         "rank": 9,
+        "sample_id": 17,
+        "microphone": "Sony ICD-UX570",
+        "category": "portable",
+        "score": 78.0
+      },
+      {
+        "rank": 10,
         "sample_id": 9,
         "microphone": "Logitech C925e",
         "category": "desktop",
         "score": 75.0
       },
       {
-        "rank": 10,
+        "rank": 11,
         "sample_id": 10,
         "microphone": "Maono Elf",
         "category": "lavalier",
         "score": 75.0
       },
       {
-        "rank": 11,
+        "rank": 12,
+        "sample_id": 16,
+        "microphone": "EMEET Conference Speakerphone",
+        "category": "desktop",
+        "score": 75.0
+      },
+      {
+        "rank": 13,
         "sample_id": 3,
         "microphone": "Logitech H390",
         "category": "headset",
         "score": 74.0
       },
       {
-        "rank": 12,
+        "rank": 14,
         "sample_id": 1,
         "microphone": "UGreen CM564",
         "category": "desktop",
         "score": 70.0
       },
       {
-        "rank": 13,
+        "rank": 15,
         "sample_id": 6,
         "microphone": "Audio-Technica ATR4697",
         "category": "desktop",
         "score": 70.0
       },
       {
-        "rank": 14,
+        "rank": 16,
         "sample_id": 13,
         "microphone": "Audio-Technica ATR4750-USB",
         "category": "desktop",
         "score": 70.0
       },
       {
-        "rank": 15,
+        "rank": 17,
         "sample_id": 7,
         "microphone": "Audio-Technica ATR4697",
         "category": "desktop",
@@ -138,83 +152,97 @@
       },
       {
         "rank": 4,
+        "sample_id": 16,
+        "microphone": "EMEET Conference Speakerphone",
+        "category": "desktop",
+        "wer_percent": 5.08
+      },
+      {
+        "rank": 5,
         "sample_id": 2,
         "microphone": "Samson Q2U",
         "category": "desktop",
         "wer_percent": 5.4
       },
       {
-        "rank": 5,
+        "rank": 6,
         "sample_id": 5,
         "microphone": "OnePlus Nord 3 5G (assumed)",
         "category": "mobile",
         "wer_percent": 5.4
       },
       {
-        "rank": 6,
+        "rank": 7,
         "sample_id": 6,
         "microphone": "Audio-Technica ATR4697",
         "category": "desktop",
         "wer_percent": 5.4
       },
       {
-        "rank": 7,
+        "rank": 8,
         "sample_id": 8,
         "microphone": "Jabra Speak 510",
         "category": "desktop",
         "wer_percent": 5.4
       },
       {
-        "rank": 8,
+        "rank": 9,
         "sample_id": 9,
         "microphone": "Logitech C925e",
         "category": "desktop",
         "wer_percent": 5.4
       },
       {
-        "rank": 9,
+        "rank": 10,
         "sample_id": 10,
         "microphone": "Maono Elf",
         "category": "lavalier",
         "wer_percent": 5.4
       },
       {
-        "rank": 10,
+        "rank": 11,
         "sample_id": 3,
         "microphone": "Logitech H390",
         "category": "headset",
         "wer_percent": 5.71
       },
       {
-        "rank": 11,
+        "rank": 12,
         "sample_id": 4,
         "microphone": "OnePlus Nord 3 5G",
         "category": "mobile",
         "wer_percent": 5.71
       },
       {
-        "rank": 12,
+        "rank": 13,
         "sample_id": 11,
         "microphone": "Yealink BH72",
         "category": "headset",
         "wer_percent": 6.03
       },
       {
-        "rank": 13,
+        "rank": 14,
         "sample_id": 12,
         "microphone": "Yealink BH72",
         "category": "headset",
         "wer_percent": 6.03
       },
       {
-        "rank": 14,
+        "rank": 15,
         "sample_id": 14,
         "microphone": "OnePlus Nord 3 5G",
         "category": "mobile",
         "wer_percent": 6.03
       },
       {
-        "rank": 15,
+        "rank": 16,
+        "sample_id": 17,
+        "microphone": "Sony ICD-UX570",
+        "category": "portable",
+        "wer_percent": 6.03
+      },
+      {
+        "rank": 17,
         "sample_id": 13,
         "microphone": "Audio-Technica ATR4750-USB",
         "category": "desktop",
@@ -231,10 +259,11 @@
         7,
         8,
         9,
-        13
+        13,
+        16
       ],
-      "avg_quality": 71.71428571428571,
-      "avg_wer": 0.05306122448979592
+      "avg_quality": 72.125,
+      "avg_wer": 0.05277777777777778
     },
     "headset": {
       "samples": [
@@ -261,6 +290,13 @@
       ],
       "avg_quality": 75.0,
       "avg_wer": 0.05396825396825397
+    },
+    "portable": {
+      "samples": [
+        17
+      ],
+      "avg_quality": 78.0,
+      "avg_wer": 0.06031746031746032
     }
   },
   "detailed_results": [
@@ -801,6 +837,78 @@
           "cer": 0.016027197668771247,
           "processing_time_seconds": 33.30964803695679,
           "run_date": "2025-12-23"
+        }
+      ]
+    },
+    {
+      "sample_id": 16,
+      "filename": "samples/16.wav",
+      "microphone": {
+        "manufacturer": "EMEET",
+        "model": "Conference Speakerphone",
+        "type": "USB Speakerphone",
+        "category": "desktop",
+        "subcategory": "speakerphone"
+      },
+      "audio_metrics": {
+        "duration_seconds": 116.136667,
+        "sample_rate": 44100,
+        "channels": 2,
+        "bit_depth": 16,
+        "codec": "pcm_s16le",
+        "bitrate_kbps": 1411.203,
+        "peak_amplitude_db": -5.1,
+        "rms_level_db": -27.3,
+        "estimated_snr_db": 25.559836,
+        "dynamic_range_db": 47.759836,
+        "silence_ratio": 0.1190027333333333,
+        "clipping_ratio": 0
+      },
+      "audio_quality_score": 75.0,
+      "transcriptions": [
+        {
+          "service": "openai_whisper_1",
+          "text": "The history of coffee is surprisingly complex and spans several centuries across multiple continents. Originally discovered in Ethiopia, the coffee plant made its way through Yemen and into the broader Middle East before eventually reaching Europe in the 17th century. Early European reactions to coffee were mixed. Some religious authorities initially condemned it as a Muslim drink, while others embraced its ability to keep people alert during long working hours. Coffee houses quickly became centres of intellectual discourse, earning them the nickname Penny Universities because anyone could join a conversation for the price of a cup. The Dutch were among the first Europeans to cultivate coffee outside of Arabia, establishing plantations in their colonial territories. This broke the Arabian monopoly on coffee production and eventually led to the global industry we know today. Brazil now produces roughly one third of the world's coffee supply, followed by Vietnam and Colombia. Modern coffee culture has evolved significantly from its origins. Healthy coffee roasters focus on single-origin beans, careful roasting profiles, and precise brewing methods. Firms like Pour Over, Cold Brew, and Third Wave have entered common vocabulary. Meanwhile, instant coffee remains popular in many countries for its convenience. The science behind coffee extraction involves balancing temperature, grind size, water quality, and contact time. Too fine a grind leads to over-extraction and bitterness, while too coarse results in weak sour flavours. Water temperature between 90 and 96 degrees Celsius is generally considered optimal. Caffeine content varies widely depending on brewing method and bean variety. A typical espresso shot contains less total caffeine than a large drip coffee, despite tasting much stronger. Robusta beans contain nearly twice the caffeine of Arabica, but are considered inferior in flavour. Whether enjoyed as a morning ritual or an afternoon pick-me-up, coffee remains one of the most widely consumed beverages on earth, second only to water and tea.",
+          "wer": 0.050793650793650794,
+          "cer": 0.01942690626517727,
+          "processing_time_seconds": 21.66055178642273,
+          "run_date": "2026-02-04"
+        }
+      ]
+    },
+    {
+      "sample_id": 17,
+      "filename": "samples/17.mp3",
+      "microphone": {
+        "manufacturer": "Sony",
+        "model": "ICD-UX570",
+        "type": "Digital Voice Recorder",
+        "category": "portable",
+        "subcategory": "dvr"
+      },
+      "audio_metrics": {
+        "duration_seconds": 116.950208,
+        "sample_rate": 44100,
+        "channels": 2,
+        "bit_depth": null,
+        "codec": "mp3",
+        "bitrate_kbps": 192.28,
+        "peak_amplitude_db": -0.0,
+        "rms_level_db": -21.6,
+        "estimated_snr_db": 31.536614,
+        "dynamic_range_db": 53.136614,
+        "silence_ratio": 0.11438976666666664,
+        "clipping_ratio": 0.3333333333333333
+      },
+      "audio_quality_score": 78.0,
+      "transcriptions": [
+        {
+          "service": "openai_whisper_1",
+          "text": "The history of coffee is surprisingly complex and spans several centuries across multiple continents. Originally discovered in Ethiopia, the coffee plant made its way through Yemen and into the broader Middle East before eventually reaching Europe in the 17th century. Early European reactions to coffee were mixed. Some religious authorities initially condemned it as a Muslim drink, while others embraced its ability to keep people alert during long working hours. Coffee houses quickly became centres of intellectual discourse, earning them the nickname Penny Universities because anyone could join a conversation for the price of a cup. The Dutch were among the first Europeans to cultivate coffee outside of Arabia, establishing plantations in their colonial territories. This broke the Arabian monopoly on coffee production and eventually led to the global industry we know today. Brazil now produces roughly one third of the world's coffee supply, followed by Vietnam and Colombia. Modern coffee culture has evolved significantly from its origins. Speciality coffee roasters focus on single-origin beans, careful roasting profiles, and precise brewing methods. Terms like pour-over, cold brew, and third wave have entered common vocabulary. Meanwhile, instant coffee remains popular in many countries for its convenience. The science behind coffee extraction involves balancing temperature, grind size, water quality, and contact time. Too fine a grind leads to over-extraction and bitterness, while too coarse results in weak, sour flavours. Water temperature between 90 and 96\u00b0C is generally considered optimal. Caffeine content varies widely depending on brewing method and bean variety. A typical espresso shot contains less total caffeine than a large drip coffee, despite tasting much stronger. Robusta beans contain nearly twice the caffeine of Arabica, but are considered inferior in flavour. Whether enjoyed as a morning ritual or an afternoon pick-me-up, coffee remains one of the most widely consumed beverages on earth, second only to water and tea.",
+          "wer": 0.06031746031746032,
+          "cer": 0.02428363283147159,
+          "processing_time_seconds": 8.023576498031616,
+          "run_date": "2026-02-04"
         }
       ]
     }
