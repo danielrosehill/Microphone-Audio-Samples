@@ -203,6 +203,62 @@ plt.savefig(output_path, dpi=150, bbox_inches='tight')
 plt.close()
 print(f"Generated: {output_path}")
 
+# ============================================================================
+# Generate standalone Average WER by Type chart (sorted best to worst)
+# ============================================================================
+fig2, ax = plt.subplots(figsize=(12, 7))
+
+# type_summary is already sorted by avg_wer (best first)
+y_pos = np.arange(len(type_summary))
+colors = [type_colors.get(t["type"], "#bdc3c7") for t in type_summary]
+
+bars = ax.barh(y_pos, [t["avg_wer"] for t in type_summary], color=colors, alpha=0.85, edgecolor='white', linewidth=1.5)
+
+# Add error bars for range
+for i, t in enumerate(type_summary):
+    if t["count"] > 1:
+        ax.plot([t["min_wer"], t["max_wer"]], [i, i], 'k-', linewidth=2.5, alpha=0.4)
+        ax.plot([t["min_wer"]], [i], 'k|', markersize=12, markeredgewidth=2)
+        ax.plot([t["max_wer"]], [i], 'k|', markersize=12, markeredgewidth=2)
+
+ax.set_yticks(y_pos)
+ax.set_yticklabels([t['type'] for t in type_summary], fontsize=11)
+ax.set_xlabel("Word Error Rate (%) - Lower is Better", fontsize=12, fontweight='bold')
+ax.set_title("Average WER by Microphone Type\n(Sorted Best to Worst)", fontsize=14, fontweight='bold', pad=15)
+
+# Add annotations with count and price
+for i, (bar, t) in enumerate(zip(bars, type_summary)):
+    price_str = f"~${t['avg_price']:.0f}" if t['avg_price'] else ""
+    range_str = f"(range: {t['min_wer']:.1f}-{t['max_wer']:.1f}%)" if t['count'] > 1 else ""
+    label = f" {t['avg_wer']:.2f}%  n={t['count']} {price_str}"
+    ax.text(bar.get_width() + 0.08, bar.get_y() + bar.get_height()/2,
+            label, va='center', fontsize=10, fontweight='bold')
+
+# Add ranking numbers
+for i, t in enumerate(type_summary):
+    ax.text(-0.15, i, f"#{i+1}", ha='right', va='center', fontsize=10,
+            fontweight='bold', color='#2c3e50')
+
+ax.set_xlim(-0.3, max(t["avg_wer"] for t in type_summary) * 1.4)
+
+# Add reference lines
+ax.axvline(x=5.0, color='#27ae60', linestyle='--', alpha=0.6, linewidth=2, label='5% WER (Excellent)')
+ax.axvline(x=6.0, color='#f39c12', linestyle='--', alpha=0.6, linewidth=2, label='6% WER (Good)')
+ax.legend(loc='lower right', fontsize=10)
+
+# Style
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.tick_params(axis='y', length=0)
+ax.grid(axis='x', alpha=0.3, linestyle='-')
+
+plt.tight_layout()
+
+output_path2 = SPECTROGRAMS_DIR / "wer_by_microphone_type.png"
+plt.savefig(output_path2, dpi=150, bbox_inches='tight', facecolor='white')
+plt.close()
+print(f"Generated: {output_path2}")
+
 # Print summary
 print("\n" + "=" * 70)
 print("MICROPHONE TYPE RANKINGS (by average WER)")

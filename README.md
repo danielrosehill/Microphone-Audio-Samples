@@ -3,6 +3,7 @@
 [![View PDF Report](https://img.shields.io/badge/📄_PDF_Report-View_Benchmark-blue?style=for-the-badge)](reports/microphone-stt-benchmark.pdf)
 [![View Infographic](https://img.shields.io/badge/📊_Infographic-WER_Rankings-green?style=for-the-badge)](device-images/composites/eval-20251223/infographic-wer-ranked.png)
 [![Type Comparison](https://img.shields.io/badge/📈_Chart-Type_Comparison-orange?style=for-the-badge)](spectrograms/type_comparison_analysis.png)
+[![WER by Type](https://img.shields.io/badge/📊_Chart-WER_by_Type-teal?style=for-the-badge)](spectrograms/wer_by_microphone_type.png)
 [![Spectrograms](https://img.shields.io/badge/🔊_Spectrograms-Audio_Analysis-purple?style=for-the-badge)](spectrograms/spectrograms_ranked_by_wer.png)
 [![Spectrogram PDF](https://img.shields.io/badge/📑_All_Spectrograms-PDF_Collection-darkviolet?style=for-the-badge)](spectrograms/spectrograms_collection.pdf)
 [![Price Analysis](https://img.shields.io/badge/💰_Price-Correlation-red?style=for-the-badge)](spectrograms/price_vs_wer_analysis.png)
@@ -128,6 +129,24 @@ Quality score (0-100) based on technical audio metrics including SNR, dynamic ra
 | Headset | 81.3 | 5.93% | Logitech H390 (5.71%) |
 | Portable | 78.0 | 6.03% | Sony ICD-UX570 |
 
+### Average WER by Microphone Type
+
+![WER by Microphone Type](spectrograms/wer_by_microphone_type.png)
+
+| Rank | Microphone Type | Avg WER | Samples | Avg Price |
+|------|-----------------|---------|---------|-----------|
+| 1 | USB Gooseneck | 4.44% | 1 | ~$18 |
+| 2 | Boundary Microphone | 5.08% | 2 | ~$45 |
+| 3 | USB Speakerphone | 5.24% | 2 | ~$75 |
+| 4 | Smartphone built-in | 5.32% | 4 | — |
+| 5 | Dynamic USB/XLR | 5.40% | 1 | ~$70 |
+| 5 | Webcam built-in | 5.40% | 1 | ~$75 |
+| 5 | Lavalier | 5.40% | 1 | ~$25 |
+| 8 | USB Headset | 5.71% | 1 | ~$30 |
+| 9 | Wireless Headset | 6.03% | 2 | ~$160 |
+| 9 | Digital Voice Recorder | 6.03% | 1 | ~$100 |
+| 11 | Condenser Gooseneck | 6.35% | 1 | ~$55 |
+
 ## Key Findings
 
 1. **Best for STT Accuracy**: The OnePlus Nord 3 in a quiet environment achieved the lowest WER (4.13%), followed closely by the UGreen CM564 gooseneck (4.44%).
@@ -224,6 +243,7 @@ Individual spectrograms for each microphone are available in the [spectrograms/]
 - [Spectrograms PDF Collection](spectrograms/spectrograms_collection.pdf) - All spectrograms in landscape format
 - [Spectrograms Grid](spectrograms/spectrograms_ranked_by_wer.png) - All 17 spectrograms ranked by WER
 - [Type Comparison](spectrograms/type_comparison_analysis.png) - Microphone type head-to-head analysis
+- [WER by Type Ranking](spectrograms/wer_by_microphone_type.png) - Average WER by microphone type (sorted best to worst)
 - [Price Correlation Chart](spectrograms/price_vs_wer_analysis.png) - Price vs accuracy analysis
 - [Audio Feature Correlations](spectrograms/correlation_analysis.png) - Feature correlation scatter plots
 - [Analysis Report](spectrograms/analysis_report.md) - Detailed audio feature analysis findings
